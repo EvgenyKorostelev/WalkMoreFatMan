@@ -1,15 +1,22 @@
 package ru.korostelev.WalkMoreFatMan.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 import ru.korostelev.WalkMoreFatMan.entity.dto.Gender;
 import ru.korostelev.WalkMoreFatMan.entity.dto.Target;
 
 import java.util.UUID;
 
 @Entity
+@Data
 public class User {
 
-    private UUID userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String name;
 
@@ -27,9 +34,9 @@ public class User {
 
     private Double bmr;
 
-    public User(UUID userId, String name, Gender gender, String email, Integer age, Integer weight,
+    public User(Integer id, String name, Gender gender, String email, Integer age, Integer weight,
                 Integer height, Target target) {
-        this.userId = userId;
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.email = email;

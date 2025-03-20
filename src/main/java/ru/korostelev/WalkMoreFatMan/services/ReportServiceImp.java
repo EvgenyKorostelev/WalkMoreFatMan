@@ -1,4 +1,4 @@
-package ru.korostelev.WalkMoreFatMan.services;
-
-public class ReportServiceImp implements ReportService{
-}
+//package ru.korostelev.WalkMoreFatMan.services;
+//
+//public class ReportServiceImp implements ReportService{
+//}

@@ -1,4 +1,4 @@
-package ru.korostelev.WalkMoreFatMan.services;
-
-public interface ReportService {
-}
+//package ru.korostelev.WalkMoreFatMan.services;
+//
+//public interface ReportService {
+//}

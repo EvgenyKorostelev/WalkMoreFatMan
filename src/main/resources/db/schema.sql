@@ -1,7 +1,7 @@
 create schema if not exists diet_service;
 
 create table if not exists diet_service.t_bju_user(
-    id            serial primary key,
+    id serial primary key,
     c_user_name varchar(50) not null check (length(trim(c_user_name)) >= 3),
     c_gender varchar not null,
     c_email varchar(50) not null check (length(trim(c_email)) >= 5),
@@ -13,10 +13,17 @@ create table if not exists diet_service.t_bju_user(
     );
 
 create table if not exists diet_service.t_bju_dish(
-    id            serial primary key,
+    id serial primary key,
     c_dish_name varchar(50) not null check (length(trim(c_dish_name)) >= 3),
     c_calories_per_serving INT not null check (c_calories_per_serving > 0) check (c_calories_per_serving <= 10000),
     c_proteins INT not null check (c_proteins >= 0) check (c_proteins <= 100),
     c_fats INT not null check (c_fats >= 0) check (c_fats <= 100),
     c_carbohydrates INT not null check (c_carbohydrates >= 0) check (c_carbohydrates <= 100)
+    );
+
+create table if not exists diet_service.t_bju_history(
+    id serial primary key,
+    c_date TIMESTAMPTZ,
+    c_user_id INT ,
+    c_dish_id INT
     );

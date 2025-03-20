@@ -1,23 +1,32 @@
 package ru.korostelev.WalkMoreFatMan.entity;
 
 import jakarta.persistence.Entity;
-import ru.korostelev.WalkMoreFatMan.entity.dto.BJU;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.util.UUID;
 
+
 @Entity
+@AllArgsConstructor
+@Data
 public class Dish {
 
-    private UUID dishId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String dishName;
 
     private Integer caloriesPerServing;
 
-    private Integer Proteins;
+    private Integer proteins;
 
-    private Integer Fats;
+    private Integer fats;
 
-    private Integer Carbohydrates;
+    private Integer carbohydrates;
 
 }

@@ -1,4 +1,21 @@
 package ru.korostelev.WalkMoreFatMan.controller.payload;
 
-public record UpdateUserPayload() {
+import ru.korostelev.WalkMoreFatMan.entity.dto.Gender;
+import ru.korostelev.WalkMoreFatMan.entity.dto.Target;
+
+public record UpdateUserPayload(
+
+        String name,
+
+        Gender gender,
+
+        String email,
+
+        Integer age,
+
+        Integer weight,
+
+        Integer height,
+
+        Target target) {
 }
