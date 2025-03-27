@@ -10,7 +10,6 @@ import ru.korostelev.WalkMoreFatMan.repository.UserRepository;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -39,9 +38,8 @@ public class UserServiceImp implements UserService {
     @Override
     public User updateUser(String userName, UpdateUserPayload payload) {
         Optional<User> user = userRepository.findByName(userName);
-        return user.map(
-                value -> userRepository.save(new User(user.get().getId(), payload.name(), payload.gender(),
-                        payload.email(), payload.age(), payload.weight(), payload.height(), payload.target())))
+        return user.map(value -> userRepository.save(new User(user.get().getId(), payload.name(), payload.gender(),
+                                payload.email(), payload.age(), payload.weight(), payload.height(), payload.target())))
                 .orElse(null);
 
     }

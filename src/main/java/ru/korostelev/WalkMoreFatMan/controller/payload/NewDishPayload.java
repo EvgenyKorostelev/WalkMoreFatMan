@@ -2,13 +2,13 @@ package ru.korostelev.WalkMoreFatMan.controller.payload;
 
 public record NewDishPayload(
 
-                            String dishName,
+        String name,
 
-                            Integer caloriesPerServing,
+        Integer caloriesPerServing,
 
-                            Integer proteins,
+        Integer proteins,
 
-                            Integer fats,
+        Integer fats,
 
-                            Integer carbohydrates) {
+        Integer carbohydrates) {
 }

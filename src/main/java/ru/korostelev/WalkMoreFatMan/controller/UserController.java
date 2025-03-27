@@ -1,5 +1,6 @@
 package ru.korostelev.WalkMoreFatMan.controller;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,19 +28,20 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @GetMapping("/user/{userName:\\s+}")
+    @GetMapping("/{userName:\\S+}")
     public User findUser(@PathVariable String userName){
         return userService.findUserByName(userName);
     }
 
-    @PutMapping("/user/{userName:\\s+}")
+    @PutMapping("/{userName:\\S+}")
     public User updateUser(@PathVariable String userName,
                            @RequestBody UpdateUserPayload payload){
         return userService.updateUser(userName, payload);
     }
 
 
-    @DeleteMapping("/user/{userName:\\s+}")
+    @DeleteMapping("/{userName:\\S+}")
+    @Transactional
     public void deleteUser(@PathVariable String userName){
         userService.deleteUserByName(userName);
     }

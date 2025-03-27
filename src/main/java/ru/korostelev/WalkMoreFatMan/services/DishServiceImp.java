@@ -1,5 +1,6 @@
 package ru.korostelev.WalkMoreFatMan.services;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.korostelev.WalkMoreFatMan.controller.payload.NewDishPayload;
@@ -10,10 +11,9 @@ import ru.korostelev.WalkMoreFatMan.repository.DishRepository;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class DishServiceImp implements DishService {
 
     private final DishRepository dishRepository;
@@ -22,7 +22,7 @@ public class DishServiceImp implements DishService {
     @Override
     public Dish addDish(NewDishPayload payload) {
         return dishRepository.save(
-                new Dish(null, payload.dishName(), payload.caloriesPerServing(),
+                new Dish(null, payload.name(), payload.caloriesPerServing(),
                         payload.proteins(), payload.fats(), payload.carbohydrates()));
     }
 
@@ -40,7 +40,7 @@ public class DishServiceImp implements DishService {
     public Dish updateDish(String dishName, UpdateDishPayload payload) {
         Optional<Dish> dish = dishRepository.findByName(dishName);
         return dish.map(value -> dishRepository.save(
-                        new Dish(dish.get().getId(), payload.dishName(), payload.caloriesPerServing(),
+                        new Dish(dish.get().getId(), payload.name(), payload.caloriesPerServing(),
                                 payload.proteins(), payload.fats(), payload.carbohydrates())))
                 .orElse(null);
     }
