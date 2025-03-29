@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DishService {
 
-    Dish addDish(@Valid NewDishPayload payload);
+    Dish addDish(NewDishPayload payload);
 
     List<Dish> findAllDishes();
 

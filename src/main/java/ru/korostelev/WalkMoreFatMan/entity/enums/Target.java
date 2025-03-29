@@ -1,4 +1,4 @@
-package ru.korostelev.WalkMoreFatMan.entity.dto;
+package ru.korostelev.WalkMoreFatMan.entity.enums;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

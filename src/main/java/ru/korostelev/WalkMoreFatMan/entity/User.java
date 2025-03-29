@@ -5,8 +5,8 @@ import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.korostelev.WalkMoreFatMan.entity.dto.Gender;
-import ru.korostelev.WalkMoreFatMan.entity.dto.Target;
+import ru.korostelev.WalkMoreFatMan.entity.enums.Gender;
+import ru.korostelev.WalkMoreFatMan.entity.enums.Target;
 
 @Entity
 @Table(name = "t_bju_user", schema = "diet_service")

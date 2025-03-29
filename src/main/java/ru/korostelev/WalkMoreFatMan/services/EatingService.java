@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface EatingService {
 
-    void eating(@Valid String userName, List<String> dishesList);
+    void eating(String userName, List<String> dishesList);
 
     List<EatingReport> fullReportsAllUsers();
 
-    EatingReport fullUserReports(@Valid String userName);
+    EatingReport fullUserReports(String userName);
 
     List<EatingReport> dailyAllUsersReports(LocalDate date);
 
-    EatingReport dailyUserReport(@Valid String userName, LocalDate date);
+    EatingReport dailyUserReport(String userName, LocalDate date);
 }

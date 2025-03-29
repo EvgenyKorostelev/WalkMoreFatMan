@@ -2,10 +2,11 @@ package ru.korostelev.WalkMoreFatMan.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.korostelev.WalkMoreFatMan.controller.payload.UserNamePayload;
 import ru.korostelev.WalkMoreFatMan.entity.Dish;
 import ru.korostelev.WalkMoreFatMan.entity.EatingReport;
 import ru.korostelev.WalkMoreFatMan.entity.User;
-import ru.korostelev.WalkMoreFatMan.entity.dto.Target;
+import ru.korostelev.WalkMoreFatMan.entity.enums.Target;
 import ru.korostelev.WalkMoreFatMan.repository.DishRepository;
 import ru.korostelev.WalkMoreFatMan.repository.EatingHistoryRepository;
 import ru.korostelev.WalkMoreFatMan.repository.UserRepository;
@@ -26,9 +27,9 @@ public class CalorieCheckServiceImp implements CalorieCheckService {
     private final DishRepository dishRepository;
 
     @Override
-    public boolean checkUserCalorie(String userName, LocalDate date) {
+    public boolean checkUserCalorie(UserNamePayload userNamePayload, LocalDate date) {
 
-        User user = userRepository.findByName(userName).orElseThrow(
+        User user = userRepository.findByName(userNamePayload.name()).orElseThrow(
                 () -> new NoSuchElementException("user.not_found"));
 
         EatingReport eatingUserDaily = eatingHistoryRepository.findByUserIdAndDate(user.getId(),

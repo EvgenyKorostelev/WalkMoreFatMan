@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.korostelev.WalkMoreFatMan.controller.payload.NewUserPayload;
 import ru.korostelev.WalkMoreFatMan.controller.payload.UpdateUserPayload;
+import ru.korostelev.WalkMoreFatMan.controller.payload.UserNamePayload;
 import ru.korostelev.WalkMoreFatMan.entity.User;
 import ru.korostelev.WalkMoreFatMan.services.UserService;
 
@@ -19,8 +20,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public User registeredUser (@RequestBody @Valid NewUserPayload payload){
-        return userService.addUser(payload);
+    public User registeredUser (@RequestBody @Valid NewUserPayload newUserPayload){
+        return userService.addUser(newUserPayload );
     }
 
     @GetMapping
@@ -29,21 +30,21 @@ public class UserController {
     }
 
     @GetMapping("/{userName:\\S+}")
-    public User findUser(@PathVariable String userName){
-        return userService.findUserByName(userName);
+    public User findUser(@PathVariable @Valid UserNamePayload userNamePayload){
+        return userService.findUserByName(userNamePayload.name());
     }
 
     @PutMapping("/{userName:\\S+}")
-    public User updateUser(@PathVariable String userName,
-                           @RequestBody UpdateUserPayload payload){
-        return userService.updateUser(userName, payload);
+    public User updateUser(@PathVariable @Valid UserNamePayload userNamePayload,
+                           @RequestBody @Valid UpdateUserPayload payload){
+        return userService.updateUser(userNamePayload.name(), payload);
     }
 
 
     @DeleteMapping("/{userName:\\S+}")
     @Transactional
-    public void deleteUser(@PathVariable String userName){
-        userService.deleteUserByName(userName);
+    public void deleteUser(@PathVariable @Valid UserNamePayload userNamePayload){
+        userService.deleteUserByName(userNamePayload.name());
     }
 
 
