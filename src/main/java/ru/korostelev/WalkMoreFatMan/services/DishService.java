@@ -6,16 +6,17 @@ import ru.korostelev.WalkMoreFatMan.controller.payload.UpdateDishPayload;
 import ru.korostelev.WalkMoreFatMan.entity.Dish;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DishService {
 
-    Dish addDish(NewDishPayload payload);
+    Optional<Dish> createDish(NewDishPayload payload);
 
     List<Dish> findAllDishes();
 
-    Dish findDishByName(String dishName);
+    Optional<Dish>  findDishByName(String dishName);
 
-    Dish updateDish(String dishName, UpdateDishPayload payload);
+    Optional<Dish>  updateDish(String dishName, UpdateDishPayload payload);
 
     void deleteDishByName(String dishName);
 }
