@@ -1,14 +1,5 @@
 create schema if not exists diet_service;
 
---create type GENDER AS ENUM (
--- 'MALE',
--- 'FEMALE');
---
---create type TARGET AS ENUM (
--- 'WEIGHT_LOSS',
--- 'MAINTENANCE',
--- 'GAIN');
-
 create table if not exists diet_service.t_bju_user(
     id serial primary key,
     c_user_name VARCHAR(50) not null check (length(trim(c_user_name)) >= 3),

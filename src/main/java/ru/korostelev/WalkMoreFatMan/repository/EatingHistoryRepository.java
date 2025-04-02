@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.korostelev.WalkMoreFatMan.entity.EatingReport;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 

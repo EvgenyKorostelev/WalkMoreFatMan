@@ -7,16 +7,17 @@ import ru.korostelev.WalkMoreFatMan.entity.EatingReport;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface EatingService {
 
-    void eating(String userName, List<String> dishesList);
+    Optional<EatingReport> eating(String userName, List<String> dishesList);
 
     List<EatingReport> fullReportsAllUsers();
 
-    EatingReport fullUserReports(String userName);
+    Optional<EatingReport> fullUserReports(String userName);
 
     List<EatingReport> dailyAllUsersReports(LocalDate date);
 
-    EatingReport dailyUserReport(String userName, LocalDate date);
+    Optional<EatingReport> dailyUserReport(String userName, LocalDate date);
 }

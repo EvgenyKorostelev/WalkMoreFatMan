@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,15 +25,15 @@ public class EatingServiceImp implements EatingService {
     private final DishRepository dishRepository;
 
     @Override
-    public void eating(String userName, List<String> dishesList) {
-        eatingHistoryRepository.save(
+    public Optional<EatingReport> eating(String userName, List<String> dishesList) {
+        return Optional.of(eatingHistoryRepository.save(
                 new EatingReport(null, LocalDate.now(),
                         userRepository.findByName(userName).orElseThrow(
                                 () -> new NoSuchElementException("user.not_found")).getId(),
                         dishesList.stream()
                                 .map(o -> dishRepository.findByName(o).orElseThrow(
                                         () -> new NoSuchElementException("dish.not_found")).getId())
-                                .toList().toString()));
+                                .toList().toString())));
     }
 
     @Override
@@ -41,9 +42,9 @@ public class EatingServiceImp implements EatingService {
     }
 
     @Override
-    public EatingReport fullUserReports(String userName) {
+    public Optional<EatingReport> fullUserReports(String userName) {
         Integer userId = findUserIdByUserName(userName);
-        return eatingHistoryRepository.findAllByUserId(userId);
+        return Optional.of(eatingHistoryRepository.findAllByUserId(userId));
     }
 
     @Override
@@ -52,9 +53,9 @@ public class EatingServiceImp implements EatingService {
     }
 
     @Override
-    public EatingReport dailyUserReport(String userName, LocalDate date) {
+    public Optional<EatingReport> dailyUserReport(String userName, LocalDate date) {
         Integer userId = findUserIdByUserName(userName);
-        return eatingHistoryRepository.findByUserIdAndDate(userId, date);
+        return Optional.of(eatingHistoryRepository.findByUserIdAndDate(userId, date));
     }
 
     private Integer findUserIdByUserName(String userName) {
